@@ -2002,9 +2002,7 @@ public class LocalStore extends Store implements Serializable {
                                         // SpamAssassin rules.
                                         localMessage.setHeader(MimeHeader.HEADER_CONTENT_TYPE, "text/plain");
                                         localMessage.setBody(new TextBody(""));
-                                    } else if (mp.getCount() == 1 && (mp.getBodyPart(0) instanceof LocalAttachmentBodyPart) == false)
-
-                                    {
+                                    } else if (mp.getCount() == 1 && (mp.getBodyPart(0) instanceof LocalAttachmentBodyPart) == false) {
                                         // If we have only one part, drop the MimeMultipart container.
                                         BodyPart part = mp.getBodyPart(0);
                                         localMessage.setHeader(MimeHeader.HEADER_CONTENT_TYPE, part.getContentType());
@@ -3429,10 +3427,11 @@ public class LocalStore extends Store implements Serializable {
         /**
          * This is an HTML-ified version of the message for display purposes.
          */
-        private String mBodyForDisplay;
+        private final String mBodyForDisplay;
 
         public LocalTextBody(String body) {
             super(body);
+            mBodyForDisplay = null;
         }
 
         public LocalTextBody(String body, String bodyForDisplay) {
@@ -3442,10 +3441,6 @@ public class LocalStore extends Store implements Serializable {
 
         public String getBodyForDisplay() {
             return mBodyForDisplay;
-        }
-
-        public void setBodyForDisplay(String mBodyForDisplay) {
-            this.mBodyForDisplay = mBodyForDisplay;
         }
 
     }//LocalTextBody
@@ -3559,7 +3554,6 @@ public class LocalStore extends Store implements Serializable {
         /* Custom version of writeTo that updates the MIME message based on localMessage
          * changes.
          */
-
         @Override
         public void writeTo(OutputStream out) throws IOException, MessagingException {
             if (mMessageDirty) buildMimeRepresentation();
@@ -3719,9 +3713,7 @@ public class LocalStore extends Store implements Serializable {
          * and attachments as well. Delete will not actually remove the row since we need
          * to retain the uid for synchronization purposes.
          */
-        private void delete() throws MessagingException
-
-        {
+        private void delete() throws MessagingException {
             /*
              * Delete all of the message's content to save space.
              */

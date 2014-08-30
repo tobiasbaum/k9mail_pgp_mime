@@ -2,6 +2,7 @@
 package com.fsck.k9.mail;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.james.mime4j.util.MimeUtil;
 
@@ -20,13 +21,12 @@ public abstract class Multipart implements CompositeBody {
         part.setParent(this);
     }
 
-    public void addBodyPart(BodyPart part, int index) {
-        mParts.add(index, part);
-        part.setParent(this);
-    }
-
     public BodyPart getBodyPart(int index) {
         return mParts.get(index);
+    }
+    
+    public List<BodyPart> getBodyParts() {
+    	return mParts;
     }
 
     public String getContentType() {
@@ -35,16 +35,6 @@ public abstract class Multipart implements CompositeBody {
 
     public int getCount() {
         return mParts.size();
-    }
-
-    public boolean removeBodyPart(BodyPart part) {
-        part.setParent(null);
-        return mParts.remove(part);
-    }
-
-    public void removeBodyPart(int index) {
-        mParts.get(index).setParent(null);
-        mParts.remove(index);
     }
 
     public Part getParent() {
