@@ -24,9 +24,9 @@ public abstract class Multipart implements CompositeBody {
     public BodyPart getBodyPart(int index) {
         return mParts.get(index);
     }
-    
+
     public List<BodyPart> getBodyParts() {
-    	return mParts;
+        return mParts;
     }
 
     public String getContentType() {
@@ -45,6 +45,7 @@ public abstract class Multipart implements CompositeBody {
         this.mParent = parent;
     }
 
+    @Override
     public void setEncoding(String encoding) throws MessagingException {
         if (!MimeUtil.ENC_7BIT.equalsIgnoreCase(encoding)
                 && !MimeUtil.ENC_8BIT.equalsIgnoreCase(encoding)) {
