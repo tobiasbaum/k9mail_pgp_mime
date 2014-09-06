@@ -68,7 +68,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
         assertEquals(Arrays.asList(expectedParts), actual);
     }
 
-    public static void testSinglePart7BitNoRecurse() throws Exception {
+    public void testSinglePart7BitNoRecurse() throws Exception {
         MimeMessage msg = parseWithoutRecurse(toStream(
                 "From: <adam@example.org>\r\n" +
                 "To: <eva@example.org>\r\n" +
@@ -86,7 +86,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
         assertEquals("this is some test text.", printStream(msg.getBody().getInputStream()));
     }
 
-    public static void testSinglePart8BitRecurse() throws Exception {
+    public void testSinglePart8BitRecurse() throws Exception {
         MimeMessage msg = parseWithRecurse(toStream(
                 "From: <adam@example.org>\r\n" +
                 "To: <eva@example.org>\r\n" +
@@ -104,7 +104,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
         assertEquals("gefährliche Umlaute", printStream(msg.getBody().getInputStream()));
     }
 
-    public static void testSinglePartBase64NoRecurse() throws Exception {
+    public void testSinglePartBase64NoRecurse() throws Exception {
         MimeMessage msg = parseWithoutRecurse(toStream(
                 "From: <adam@example.org>\r\n" +
                 "To: <eva@example.org>\r\n" +
@@ -122,7 +122,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
         assertEquals("this is some more test text.", printStream(msg.getBody().getInputStream()));
     }
 
-    public static void testMultipartSingleLayerNoRecurse() throws Exception {
+    public void testMultipartSingleLayerNoRecurse() throws Exception {
         MimeMessage msg = parseWithoutRecurse(toStream(
                 "From: <x@example.org>\r\n" +
                 "To: <y@example.org>\r\n" +
@@ -159,7 +159,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
                 "");
     }
 
-    public static void testMultipartSingleLayerRecurse() throws Exception {
+    public void testMultipartSingleLayerRecurse() throws Exception {
         MimeMessage msg = parseWithRecurse(toStream(
                 "From: <x@example.org>\r\n" +
                 "To: <y@example.org>\r\n" +
@@ -196,7 +196,7 @@ public class MimeMessageParseTest extends AndroidTestCase {
                 "");
     }
 
-    public static void testMultipartTwoLayersRecurse() throws Exception {
+    public void testMultipartTwoLayersRecurse() throws Exception {
         MimeMessage msg = parseWithRecurse(toStream(
                 "From: <x@example.org>\r\n" +
                 "To: <y@example.org>\r\n" +
